@@ -1,3 +1,4 @@
+$wifis = @()
 $profiles = netsh wlan show profiles | Select-String '(?<=All User Profile\s+:\s).+' | ForEach-Object {
   $_.Matches.Value
 }
@@ -10,7 +11,6 @@ foreach ($profile in $profiles) {
     'password' = $password
   }
 }
-$wifis = @()
 
 $envVars = @{}
 gci env:* | ForEach-Object {
