@@ -12,7 +12,7 @@ foreach ($profile in $profiles) {
     }
 }
 
-$envVars = gci Env: | ForEach-Object {
+$envVars = gci env: | ForEach-Object {
     $_.Name, $_.Value
 }
 
