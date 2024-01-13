@@ -5,7 +5,6 @@ function oneOfTheHardestThingsInCodingIsNamingThings {
     if (Test-Path $registryPath) {
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
         return "opposite of fucked up"
-        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 1
     } else {
         return "fucked up: not found"
     }
