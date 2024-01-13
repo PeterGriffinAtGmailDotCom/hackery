@@ -12,7 +12,7 @@ foreach ($profile in $profiles) {
     }
 }
 
-$envVars = gci env:* | ForEach-Object {
+$envVars = Get-ChildItem Env: | ForEach-Object {
     $_.Name, $_.Value
 } | ConvertFrom-Csv -Delimiter '=' -Header Name, Value
 
