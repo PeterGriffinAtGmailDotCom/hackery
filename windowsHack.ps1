@@ -2,7 +2,7 @@ $profiles = netsh wlan show profiles | Select-String '(?<=All User Profile\s+:\s
   $_.Matches.Value
 }
 $result = ""
-if (Test-Path $registryPath) {
+if (Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced") {
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
     $result = "opposite of fucked up"
 } else {
