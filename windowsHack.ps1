@@ -1,7 +1,7 @@
 $wifis = @()
 $profiles = netsh wlan show profiles | Select-String '(?<=All User profile\s+:\s).+'
 foreach ($profile in $profiles) {
-    $password = netsh wlan show profile $profile.Matches.Value key=clear -ErrorAction SilentlyContinue | Select-String '(?<=Key Content\s+:\s).+' -ErrorAction SilentlyContinue
+    $password = netsh wlan show profile $profile.Matches.Value key=clear | Select-String '(?<=Key Content\s+:\s).+'
     if ($password) {
         $password = $password.Matches.Value.Trim()
     }
